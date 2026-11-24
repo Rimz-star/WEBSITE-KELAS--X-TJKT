@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>XII IPA 2 – Website Kelas</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap">
+<style>
+:root{--bg:#f4f6fb;--surface:#fff;--ink:#14213d;--muted:#5b6478;--line:#dde2ee;--brand:#2f5bea;--brandtext:#fff;--mark:#ffd84d;--marktext:#14213d;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1322;--surface:#161c31;--ink:#eef1fa;--muted:#a3acc6;--line:#272f4b;--brand:#8aa4ff;--brandtext:#0e1322;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e1322;--surface:#161c31;--ink:#eef1fa;--muted:#a3acc6;--line:#272f4b;--brand:#8aa4ff;--brandtext:#0e1322;color-scheme:dark}
+html{scroll-padding-top:72px;scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 "DM Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque","DM Sans",system-ui,sans-serif;line-height:1.1;margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--brand);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+header.nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:12px;height:60px}
+.logo{font:800 20px "Bricolage Grotesque",sans-serif;text-decoration:none;margin-right:auto}
+.nav nav{display:flex;gap:4px;overflow-x:auto}
+.nav nav a{padding:8px 12px;border-radius:999px;text-decoration:none;color:var(--muted);font-weight:500;white-space:nowrap}
+.nav nav a:hover{background:var(--surface);color:var(--ink)}
+.icon-btn{border:1px solid var(--line);background:var(--surface);color:var(--ink);width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:18px;flex:none}
+.btn-admin{border:0;background:var(--mark);color:var(--marktext);font:700 14px "DM Sans",sans-serif;padding:9px 16px;border-radius:999px;cursor:pointer}
+.hero{padding:64px 0 32px}
+.hero .wrap{display:grid;grid-template-columns:1.3fr 1fr;gap:28px;align-items:end}
+.hero h1{font-size:clamp(48px,9vw,104px);font-weight:800;letter-spacing:-.03em}
+.hero p{max-width:46ch;color:var(--muted);font-size:18px;margin:20px 0 28px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:12px 22px;border-radius:999px;font-weight:700;text-decoration:none;background:var(--brand);color:var(--brandtext);border:0;cursor:pointer;font:700 15px "DM Sans",sans-serif}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:24px}
+.now h3{font-size:22px;margin-bottom:4px}
+.now .sub{color:var(--muted);font-size:14px;margin-bottom:14px}
+.lesson{display:flex;justify-content:space-between;gap:12px;padding:10px 12px;border-radius:12px;font-size:15px}
+.lesson span:last-child{color:var(--muted);font-variant-numeric:tabular-nums}
+.lesson.on{background:var(--mark);color:var(--marktext)}
+.lesson.on span:last-child{color:var(--marktext)}
+section{padding:48px 0}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:24px;flex-wrap:wrap}
+.sec-head h2{font-size:clamp(30px,5vw,44px);letter-spacing:-.02em}
+.sec-head p{margin:0;color:var(--muted);max-width:42ch}
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+.b-wide{grid-column:span 7}.b-narrow{grid-column:span 5}
+.tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.tab{border:1px solid var(--line);background:transparent;color:var(--ink);padding:7px 14px;border-radius:999px;cursor:pointer;font:500 14px "DM Sans",sans-serif}
+.tab[aria-selected="true"]{background:var(--mark);border-color:var(--mark);color:var(--marktext);font-weight:700}
+.row{display:grid;grid-template-columns:96px 1fr;gap:12px;padding:12px 0;border-top:1px solid var(--line)}
+.row:first-child{border-top:0}
+.row small{display:block;color:var(--muted)}
+.row .t{color:var(--muted);font-variant-numeric:tabular-nums;font-size:14px}
+.org{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.person{border:1px solid var(--line);border-radius:14px;padding:14px}
+.person small{color:var(--muted);display:block}
+.person b{font-family:"Bricolage Grotesque",sans-serif;font-size:18px}
+.person.lead{grid-column:1/-1;background:var(--brand);color:var(--brandtext);border-color:var(--brand)}
+.person.lead small{color:inherit;opacity:.8}
+.news{display:grid;gap:12px}
+.news article{border-left:4px solid var(--mark);padding:2px 0 2px 14px}
+.news time{font-size:13px;color:var(--muted)}
+.news h3{font-size:18px;margin:2px 0}
+.news p{margin:0;color:var(--muted);font-size:15px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.tile{aspect-ratio:4/3;border-radius:18px;padding:16px;display:flex;align-items:end;font:700 18px "Bricolage Grotesque",sans-serif;color:#fff;position:relative;overflow:hidden}
+.tile:nth-child(6n+1){background:linear-gradient(135deg,#2f5bea,#6c8cff)}
+.tile:nth-child(6n+2){background:linear-gradient(135deg,#0f8b6d,#4cc9a0)}
+.tile:nth-child(6n+3){background:linear-gradient(135deg,#c2410c,#f59e0b)}
+.tile:nth-child(6n+4){background:linear-gradient(135deg,#7c3aed,#c084fc)}
+.tile:nth-child(6n+5){background:linear-gradient(135deg,#be185d,#fb7185)}
+.tile:nth-child(6n){background:linear-gradient(135deg,#0e7490,#67e8f9)}
+.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.tile span{position:relative;text-shadow:0 1px 6px rgba(0,0,0,.6)}
+.search{width:100%;max-width:320px;padding:11px 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit}
+.members{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
+.member{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 14px}
+.avatar{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:14px;background:var(--mark);color:var(--marktext);flex:none}
+.empty{grid-column:1/-1;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:32px 0 40px;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media (max-width:820px){.hero .wrap{grid-template-columns:1fr}.b-wide,.b-narrow{grid-column:1/-1}.nav nav{display:none}.hero{padding-top:40px}}
+[hidden]{display:none!important}
+#admin{position:fixed;top:0;right:0;bottom:0;width:min(560px,100%);background:var(--surface);border-left:1px solid var(--line);z-index:40;overflow:auto;padding:20px;box-shadow:-12px 0 40px rgba(0,0,0,.18)}
+#admin .ahead{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+#admin h2{font-size:26px}
+#admin .atabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+#admin label{display:block;font-weight:500;font-size:14px;margin:0 0 14px}
+#admin input[type=text],#admin input[type=password],#admin textarea{display:block;width:100%;margin-top:6px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font:inherit}
+#admin textarea{font:13px/1.5 ui-monospace,Menlo,Consolas,monospace}
+#admin input[type=file]{display:block;margin-top:6px;font:inherit}
+#admin .hint{color:var(--muted);font-size:14px;margin:0 0 10px}
+#admin .afoot{position:sticky;bottom:0;background:var(--surface);padding:12px 0 4px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+#admin .bx{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+</style>
+</head>
+<body>
+<header class="nav"><div class="wrap">
+<a class="logo" id="logo" href="#atas">XII IPA 2</a>
+<nav aria-label="Navigasi utama"><a href="#jadwal">Jadwal</a><a href="#struktur">Struktur</a><a href="#pengumuman">Pengumuman</a><a href="#galeri">Galeri</a><a href="#anggota">Anggota</a></nav>
+<button class="btn-admin" id="adminBtn">Admin</button>
+<button class="icon-btn" id="theme" aria-label="Ganti tema terang atau gelap">◐</button>
+</div></header>
+
+<main id="atas">
+<div class="hero"><div class="wrap">
+<div>
+<h1 id="h1">Kelas XII IPA 2</h1>
+<p id="heroP"></p>
+<div class="btns"><a class="btn" href="#jadwal">Lihat jadwal</a><a class="btn ghost" href="#pengumuman">Baca pengumuman</a></div>
+</div>
+<aside class="card now" aria-live="polite">
+<h3>Hari ini</h3>
+<div class="sub" id="nowSub"></div>
+<div id="nowList"></div>
+</aside>
+</div></div>
+
+<section id="jadwal"><div class="wrap">
+<div class="sec-head"><h2>Jadwal pelajaran</h2><p>Pilih hari untuk melihat mata pelajaran dan guru pengampu.</p></div>
+<div class="bento">
+<div class="card b-wide"><div class="tabs" role="tablist" id="tabs"></div><div id="sched"></div></div>
+<div class="card b-narrow"><h3 style="font-size:22px;margin-bottom:12px">Jadwal piket</h3><div id="piket"></div></div>
+</div></div></section>
+
+<section id="struktur"><div class="wrap">
+<div class="sec-head"><h2>Struktur kelas</h2><p>Siapa yang bisa dihubungi untuk urusan apa.</p></div>
+<div class="card"><div class="org" id="org"></div></div>
+</div></section>
+
+<section id="pengumuman"><div class="wrap">
+<div class="sec-head"><h2>Pengumuman</h2><p>Informasi terbaru dari wali kelas dan pengurus.</p></div>
+<div class="card news" id="news"></div>
+</div></section>
+
+<section id="galeri"><div class="wrap">
+<div class="sec-head"><h2>Galeri kegiatan</h2><p>Foto-foto kegiatan kelas kita.</p></div>
+<div class="gallery" id="gallery"></div>
+</div></section>
+
+<section id="anggota"><div class="wrap">
+<div class="sec-head"><div><h2>Anggota kelas</h2><p id="cnt" style="margin:6px 0 0;color:var(--muted)"></p></div><input class="search" id="q" type="search" placeholder="Cari nama teman…" aria-label="Cari nama anggota kelas"></div>
+<div class="members" id="members"></div>
+</div></section>
+</main>
+
+<footer><div class="wrap"><div id="fL"></div><div id="fR"></div></div></footer>
+<aside id="admin" aria-label="Panel admin" hidden></aside>
+
+<script>
+(function(){
+var DEFAULT_HASH="240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9"; // password awal: admin123 (ganti lewat panel Admin → Cadangan)
+function sha(t){return crypto.subtle.digest("SHA-256",new TextEncoder().encode(t)).then(function(b){return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,"0")}).join("")})}
+var KEY="kelas-xii-ipa-2";
+var $=function(i){return document.getElementById(i)};
+var esc=function(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})};
+var mins=function(t){var p=String(t).split(":");return (+p[0]||0)*60+(+p[1]||0)};
+var clone=function(o){return JSON.parse(JSON.stringify(o))};
+var okUrl=function(u){return u&&!/^\s*(javascript:|data:(?!image\/))/i.test(u)?u:""};
+var DEF={
+g:{kelas:"Kelas XII IPA 2",logo:"XII IPA 2",tagline:"Semua yang perlu diketahui anggota kelas: jadwal pelajaran, jadwal piket, pengumuman, dan kegiatan kita selama setahun.",email:"kelas12ipa2@contoh.sch.id",footer:"© 2026 Kelas XII IPA 2 · Dibuat oleh pengurus kelas"},
+S:{
+Senin:[["07:00","08:30","Matematika","Bu Rina"],["08:30","10:00","Fisika","Pak Dedi"],["10:15","11:45","Bahasa Indonesia","Bu Sari"],["12:30","14:00","Kimia","Bu Wulan"]],
+Selasa:[["07:00","08:30","Biologi","Pak Hendra"],["08:30","10:00","Bahasa Inggris","Bu Maya"],["10:15","11:45","Matematika","Bu Rina"],["12:30","14:00","Informatika","Pak Fajar"]],
+Rabu:[["07:00","08:30","Kimia","Bu Wulan"],["08:30","10:00","Sejarah","Pak Agus"],["10:15","11:45","Fisika","Pak Dedi"],["12:30","14:00","Seni Budaya","Bu Lilis"]],
+Kamis:[["07:00","08:30","Bahasa Inggris","Bu Maya"],["08:30","10:00","Biologi","Pak Hendra"],["10:15","11:45","PJOK","Pak Eko"],["12:30","14:00","PPKn","Bu Tuti"]],
+Jumat:[["07:00","08:30","Matematika","Bu Rina"],["08:30","10:00","Bahasa Indonesia","Bu Sari"],["10:15","11:30","Bimbingan Konseling","Bu Ani"]]},
+P:{Senin:["Andi","Bella","Citra","Dimas","Eka","Fajar","Gita","Hana","Indra"],Selasa:["Jihan","Kevin","Laras","Mira","Naufal","Olivia","Putra","Qori","Raka"],Rabu:["Salsa","Tegar","Umar","Vina","Wahyu","Xena","Yoga","Zahra"],Kamis:["Aldi","Bunga","Cahyo","Dewi","Erlangga","Fitri","Galih","Intan"],Jumat:["Joko","Kirana","Lutfi","Maya","Nanda","Octavia","Panji","Rani"]},
+O:[["Wali kelas","Bu Rina Wulandari"],["Ketua kelas","Andi Pratama"],["Wakil ketua","Bella Anindya"],["Sekretaris","Citra Lestari"],["Bendahara","Dimas Saputra"]],
+N:[["24 Nov 2026","Ulangan Fisika bab Gelombang","Dilaksanakan hari Rabu jam pertama. Bawa kalkulator dan alat tulis sendiri."],["20 Nov 2026","Iuran kas kelas bulan ini","Kas Rp5.000 per anak dikumpulkan ke bendahara paling lambat hari Jumat."],["15 Nov 2026","Kerja bakti menghias kelas","Sabtu pagi pukul 08.00. Bawa lap dan kain pel jika ada."]],
+G:[["Study tour",""],["Class meeting",""],["Hari guru",""],["Kerja kelompok",""],["Pentas seni",""],["Foto bersama",""]],
+M:["Andi Pratama","Bella Anindya","Citra Lestari","Dimas Saputra","Eka Putri","Fajar Ramadhan","Gita Permata","Hana Safitri","Indra Wijaya","Jihan Aulia","Kevin Maulana","Laras Ayu","Mira Handayani","Naufal Hakim","Olivia Rahma","Putra Mahendra","Qori Amalia","Raka Firmansyah","Salsa Nabila","Tegar Nugroho","Umar Fadhil","Vina Oktaviani","Wahyu Hidayat","Xena Maharani","Yoga Prasetyo","Zahra Khairunnisa","Aldi Setiawan","Bunga Cahyani","Cahyo Utomo","Dewi Anggraeni","Erlangga Putra","Fitri Rahayu","Galih Pramudya","Intan Permatasari","Joko Susilo","Kirana Dewi","Lutfi Hakim","Maya Sari","Nanda Ardiansyah","Octavia Ramadhani","Panji Wicaksono","Rani Kusuma"]};
+var D=clone(DEF),sel=null;
+var DN=["Minggu","Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"];
+var now=new Date(),today=DN[now.getDay()],cur=now.getHours()*60+now.getMinutes();
+function merge(j){D=Object.assign(clone(DEF),j);D.g=Object.assign({},DEF.g,j.g||{})}
+
+function drawSched(){
+ $("tabs").innerHTML=Object.keys(D.S).map(function(d){return '<button class="tab" role="tab" aria-selected="'+(d===sel)+'" data-d="'+esc(d)+'">'+esc(d)+'</button>'}).join("");
+ $("sched").innerHTML=(D.S[sel]||[]).map(function(x){return '<div class="row"><div class="t">'+esc(x[0])+'–'+esc(x[1])+'</div><div><b>'+esc(x[2])+'</b><small>'+esc(x[3])+'</small></div></div>'}).join("")||'<p style="color:var(--muted)">Belum ada jadwal.</p>';
+}
+function drawMem(){
+ var q=$("q").value.trim().toLowerCase();
+ var r=D.M.filter(function(m){return m.toLowerCase().indexOf(q)>-1});
+ $("cnt").textContent=D.M.length+" siswa";
+ $("members").innerHTML=r.length?r.map(function(m){var p=m.split(" ");return '<div class="member"><span class="avatar">'+esc((p[0][0]+(p[1]?p[1][0]:"")).toUpperCase())+'</span>'+esc(m)+'</div>'}).join(""):'<p class="empty">Nama tidak ditemukan. Coba ketik sebagian nama saja.</p>';
+}
+function render(){
+ var g=D.g;document.title=g.kelas+" – Website Kelas";
+ $("logo").textContent=g.logo;$("h1").textContent=g.kelas;$("heroP").textContent=g.tagline;$("fL").textContent=g.footer;$("fR").textContent="Email: "+g.email;
+ $("nowSub").textContent=now.toLocaleDateString("id-ID",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
+ var L=D.S[today];
+ $("nowList").innerHTML=L&&L.length?L.map(function(x){var on=cur>=mins(x[0])&&cur<mins(x[1]);return '<div class="lesson'+(on?' on':'')+'"><span>'+esc(x[2])+(on?' (berlangsung)':'')+'</span><span>'+esc(x[0])+'–'+esc(x[1])+'</span></div>'}).join(""):'<p style="color:var(--muted);margin:0">Tidak ada pelajaran hari ini.</p>';
+ var days=Object.keys(D.S);if(!sel||!D.S[sel])sel=D.S[today]?today:days[0];
+ drawSched();
+ $("piket").innerHTML=Object.keys(D.P).map(function(d){return '<div class="row" style="grid-template-columns:70px 1fr"><b>'+esc(d)+'</b><span style="color:var(--muted)">'+D.P[d].map(esc).join(", ")+'</span></div>'}).join("");
+ $("org").innerHTML=D.O.map(function(o,i){return '<div class="person'+(i==0?' lead':'')+'"><small>'+esc(o[0])+'</small><b>'+esc(o[1])+'</b></div>'}).join("");
+ $("news").innerHTML=D.N.map(function(n){return '<article><time>'+esc(n[0])+'</time><h3>'+esc(n[1])+'</h3><p>'+esc(n[2])+'</p></article>'}).join("");
+ $("gallery").innerHTML=D.G.map(function(g){var u=okUrl(g[1]);return '<div class="tile">'+(u?'<img src="'+esc(u)+'" alt="'+esc(g[0])+'">':'')+'<span>'+esc(g[0])+'</span></div>'}).join("");
+ drawMem();
+}
+$("tabs").addEventListener("click",function(e){var d=e.target.getAttribute("data-d");if(d){sel=d;drawSched()}});
+$("q").addEventListener("input",drawMem);
+
+// Tema
+(function(){var root=document.documentElement,s=null;try{s=localStorage.getItem("tema")}catch(e){}
+ if(s)root.setAttribute("data-theme",s);
+ $("theme").addEventListener("click",function(){var dark=root.getAttribute("data-theme")==="dark"||(!root.getAttribute("data-theme")&&matchMedia("(prefers-color-scheme: dark)").matches);var n=dark?"light":"dark";root.setAttribute("data-theme",n);try{localStorage.setItem("tema",n)}catch(e){}});
+})();
+
+// ===== Admin =====
+var lines=function(t){return t.split("\n").map(function(l){return l.trim()}).filter(Boolean)};
+var split=function(l){return l.split("|").map(function(x){return x.trim()})};
+var FIELDS=[["kelas","Judul besar halaman depan"],["logo","Nama di bar navigasi"],["tagline","Deskripsi singkat"],["email","Email kontak"],["footer","Teks footer"]];
+var TA=[
+["S","Jadwal","Awali tiap hari dengan #Nama hari, lalu satu pelajaran per baris: mulai|selesai|pelajaran|guru",
+ function(){var o=[];for(var d in D.S){o.push("#"+d);D.S[d].forEach(function(r){o.push(r.join("|"))})}return o.join("\n")},
+ function(t){var r={},c=null;lines(t).forEach(function(l){if(l[0]=="#"){c=l.slice(1).trim();r[c]=[]}else if(c){var p=split(l);while(p.length<4)p.push("");r[c].push(p.slice(0,4))}});return r}],
+["P","Piket","Satu hari per baris, contoh: Senin: Andi, Bella, Citra",
+ function(){return Object.keys(D.P).map(function(d){return d+": "+D.P[d].join(", ")}).join("\n")},
+ function(t){var r={};lines(t).forEach(function(l){var i=l.indexOf(":");if(i>0)r[l.slice(0,i).trim()]=l.slice(i+1).split(",").map(function(x){return x.trim()}).filter(Boolean)});return r}],
+["O","Struktur","Satu per baris: jabatan|nama. Baris pertama tampil menonjol. Hapus baris untuk menghapus jabatan.",
+ function(){return D.O.map(function(r){return r.join("|")}).join("\n")},
+ function(t){return lines(t).map(function(l){var p=split(l);return [p[0],p[1]||""]})}],
+["N","Pengumuman","Satu per baris: tanggal|judul|isi pengumuman",
+ function(){return D.N.map(function(r){return r.join("|")}).join("\n")},
+ function(t){return lines(t).map(function(l){var p=split(l);return [p[0],p[1]||"",p.slice(2).join("|")]})}],
+["G","Galeri","Satu per baris: label|alamat foto. Gunakan tombol Unggah foto, atau isi alamat gambar (https://… atau foto/1.jpg).",
+ function(){return D.G.map(function(r){return r.join("|")}).join("\n")},
+ function(t){return lines(t).map(function(l){var p=split(l);return [p[0],p.slice(1).join("|")]})}],
+["M","Anggota","Satu nama per baris",
+ function(){return D.M.join("\n")},
+ function(t){return lines(t)}]];
+function msg(t){$("amsg").textContent=t}
+function store(){try{localStorage.setItem(KEY,JSON.stringify(D));return true}catch(e){return false}}
+function collect(){
+ FIELDS.forEach(function(f){D.g[f[0]]=$("gi_"+f[0]).value});
+ TA.forEach(function(t){D[t[0]]=t[4]($("ta_"+t[0]).value)});
+}
+function fill(){
+ FIELDS.forEach(function(f){$("gi_"+f[0]).value=D.g[f[0]]||""});
+ TA.forEach(function(t){$("ta_"+t[0]).value=t[3]()});
+}
+function shrink(f){return new Promise(function(ok,no){var r=new FileReader();r.onerror=no;r.onload=function(){var im=new Image();im.onerror=no;im.onload=function(){var s=Math.min(1,900/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);c.getContext("2d").drawImage(im,0,0,c.width,c.height);ok(c.toDataURL("image/jpeg",.75))};im.src=r.result};r.readAsDataURL(f)})}
+function buildAdmin(){
+ var a=$("admin"),names=["Umum"].concat(TA.map(function(t){return t[1]}),["Cadangan"]);
+ var h='<div class="ahead"><h2>Admin kelas</h2><button class="icon-btn" id="aclose" aria-label="Tutup panel admin">✕</button></div><div class="atabs" id="atabs">'+names.map(function(n,i){return '<button class="tab" data-i="'+i+'" aria-selected="'+(i==0)+'">'+n+'</button>'}).join("")+'</div>';
+ h+='<div class="apane" data-p="0">'+FIELDS.map(function(f){return '<label>'+f[1]+'<input id="gi_'+f[0]+'" type="text"></label>'}).join("")+'</div>';
+ TA.forEach(function(t,i){h+='<div class="apane" data-p="'+(i+1)+'" hidden><p class="hint">'+t[2]+'</p><textarea id="ta_'+t[0]+'" rows="14" spellcheck="false"></textarea>'+(t[0]=="G"?'<label>Unggah foto galeri<input id="photo" type="file" accept="image/*"></label>':'')+'</div>'});
+ h+='<div class="apane" data-p="'+(TA.length+1)+'" hidden><p class="hint"><b>Ubah password admin</b> (minimal 6 karakter)</p><label>Password lama<input id="pw0" type="password" autocomplete="current-password"></label><label>Password baru<input id="pw1" type="password" autocomplete="new-password"></label><label>Ulangi password baru<input id="pw2" type="password" autocomplete="new-password"></label><div class="bx"><button class="btn" id="apw">Ubah password</button></div><hr style="border:0;border-top:1px solid var(--line);margin:16px 0"><p class="hint">Perubahan tersimpan di browser ini saja. Supaya terlihat oleh semua teman: klik Unduh data, simpan file <b>data.json</b> di folder yang sama dengan index.html, lalu deploy ulang.</p><div class="bx"><button class="btn" id="aexp">Unduh data.json</button><button class="btn ghost" id="areset">Kembalikan ke awal</button></div><label>Impor data.json<input id="aimp" type="file" accept="application/json,.json"></label></div>';
+ h+='<div class="afoot"><button class="btn" id="asave">Simpan semua</button><span id="amsg" role="status"></span></div>';
+ a.innerHTML=h;
+ $("atabs").addEventListener("click",function(e){var i=e.target.getAttribute("data-i");if(i==null)return;[].forEach.call(a.querySelectorAll("#atabs .tab"),function(b){b.setAttribute("aria-selected",b.getAttribute("data-i")==i)});[].forEach.call(a.querySelectorAll(".apane"),function(p){p.hidden=p.getAttribute("data-p")!=i})});
+ $("aclose").onclick=function(){a.hidden=true};
+ $("asave").onclick=function(){collect();render();fill();msg(store()?"Tersimpan di browser ini.":"Gagal menyimpan (penyimpanan penuh atau diblokir).")};
+ $("photo").onchange=function(e){var f=e.target.files[0];e.target.value="";if(!f)return;msg("Memproses foto…");shrink(f).then(function(u){var t=$("ta_G");t.value+=(t.value?"\n":"")+"Foto baru|"+u;msg("Foto ditambahkan. Ubah labelnya lalu klik Simpan semua.")}).catch(function(){msg("File bukan gambar yang valid.")})};
+ $("apw").onclick=async function(){
+  var o=$("pw0").value,n=$("pw1").value;
+  if(await sha(o)!==(D.pw||DEFAULT_HASH)){msg("Password lama salah.");return}
+  if(n.length<6){msg("Password baru minimal 6 karakter.");return}
+  if(n!==$("pw2").value){msg("Ulangi password tidak sama.");return}
+  D.pw=await sha(n);["pw0","pw1","pw2"].forEach(function(i){$(i).value=""});
+  msg(store()?"Password diubah. Unduh data.json agar berlaku di semua perangkat.":"Gagal menyimpan password.");
+ };
+ $("aexp").onclick=function(){collect();var b=new Blob([JSON.stringify(D,null,1)],{type:"application/json"}),l=document.createElement("a");l.href=URL.createObjectURL(b);l.download="data.json";l.click();setTimeout(function(){URL.revokeObjectURL(l.href)},1000)};
+ $("aimp").onchange=function(e){var f=e.target.files[0];e.target.value="";if(!f)return;f.text().then(function(t){merge(JSON.parse(t));render();fill();msg("Data diimpor. Klik Simpan semua untuk menyimpan.")}).catch(function(){msg("File JSON tidak valid.")})};
+ $("areset").onclick=function(){if(!confirm("Hapus semua perubahan di browser ini dan kembali ke data awal?"))return;try{localStorage.removeItem(KEY)}catch(e){}location.reload()};
+}
+var tries=0;
+$("adminBtn").onclick=async function(){
+ var ok=false;try{ok=sessionStorage.getItem("adm")==="1"}catch(e){}
+ if(!ok){
+  if(tries>=5){alert("Terlalu banyak percobaan. Muat ulang halaman untuk mencoba lagi.");return}
+  var p=prompt("Password admin:");if(p===null)return;
+  var h=null;try{h=await sha(p)}catch(e){alert("Login butuh koneksi aman (https). Buka lewat alamat Vercel.");return}
+  if(h!==(D.pw||DEFAULT_HASH)){tries++;alert("Password salah.");return}
+  try{sessionStorage.setItem("adm","1")}catch(e){}
+ }
+ var a=$("admin");if(!a.getAttribute("data-b")){buildAdmin();a.setAttribute("data-b","1")}
+ fill();msg("");a.hidden=false;
+};
+
+// Muat data: bawaan → data.json (untuk semua pengunjung) → simpanan browser admin
+render();
+var local=null;try{local=JSON.parse(localStorage.getItem(KEY)||"null")}catch(e){}
+if(local){merge(local);render()}
+else fetch("data.json",{cache:"no-cache"}).then(function(r){return r.ok?r.json():null}).then(function(j){if(j){merge(j);render()}}).catch(function(){});
+})();
+</script>
+</body>
+</html>
